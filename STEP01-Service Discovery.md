@@ -1,4 +1,4 @@
-# Service Discovery 프로젝트 생성
+# Service Discovery
 
 <br><br>
 
@@ -7,6 +7,17 @@ step01/service-discovery
 
 <br><br>
 
+# INDEX
+### [1. Eureka Service Discovery 프로젝트 생성](#eureka-service-discovery-프로젝트-생성)
+  - [1. application.yml 파일 설정](#1-applicationyml-파일-설정)
+  - [2. EurekaServer 등록하기](#2-eurekaserver-등록하기)
+  - [3. 실행 방법](#3-실행-방법)
+### [2. User Service 프로젝트 생성](#user-service-프로젝트-생성)
+
+<br><br><br>
+
+
+# Eureka Service Discovery 프로젝트 생성
 ## 1. application.yml 파일 설정
 ```yml
 server:
@@ -25,8 +36,8 @@ eureka:
 <br><br>
 
 ## 2. EurekaServer 등록하기
-> src/main/java/[package]/application.java
-> 파일에 Eureka Server 를 등록해줍니다.
+> `src/main/java/[package]/application.java`
+> 파일에 `Eureka Server` 를 등록해줍니다.
 
 ```java
 package com.msoogle.discoveryservice;
@@ -50,7 +61,7 @@ public class DiscoveryserviceApplication {
 
 <br><br>
 
-## 실행 방법
+## 3. 실행 방법
 
 ![step01-01](./img/step01-01.png)
 
@@ -71,3 +82,73 @@ public class DiscoveryserviceApplication {
 그리고 웹 브라우저에서 http://localhost:8761 또는 http://127.0.0.1:8761 로 접속하시게 되면 Eureka 서버가 실행된 모습을 확인할 수 있습니다.
 
 ![step01-02](./img/step01-02.png)
+
+
+<br><br><br>
+
+# User Service 프로젝트 생성
+
+## 1. 필요한 Dependency 설치
+
+- Eureka Discovery Client <br>
+- Lombok <br>
+- Spring Boot DevTools <br>
+- Spring Web <br>
+
+![step01-03](./img/step01-03.png)
+
+<br><br>
+
+## 2. DiscoveryClient 등록하기
+> `src/main/java/[package]/application.java`
+> 파일에 `Discovery Client` 를 등록해줍니다.
+
+```java
+package com.msoogle.userservice;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class UserServiceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(UserServiceApplication.class, args);
+    }
+
+}
+```
+
+<br><br>
+
+## 3. application.yml 파일 설정
+
+http://127.0.0.1:8761/eureka 엔드 포인트에 현재 `user-service` 마이크로 서비스를 등록하겠다고 설정해줍니다.
+
+```yml
+server:
+  port: 9001
+  
+spring:
+  application:
+    name: user-service
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url: 
+      defaultZone: http://127.0.0.1:8761/eureka
+```
+
+<br><br>
+
+## 4. 실행 방법
+
+> ### [1. Eureka Service Discovery 프로젝트 생성](#eureka-service-discovery-프로젝트-생성) 부분에서 진행항 Eureka Discovery 가 실행 중인 상태여야 합니다.
+
+아까와는 다르게 `Eureka Discovery`에 접속해보면 `USER-SERVICE`가 등록되어 있는 모습을 볼 수 있습니다.
+
+![step01-04](./img/step01-04.png)
