@@ -1,4 +1,4 @@
-<!-- # API Gateway Service
+# API Gateway Service
 
 <br><br>
 
@@ -7,7 +7,7 @@ step02/api-gateway-service
 
 <br><br>
 
-# INDEX -->
+# INDEX
 
 ### 0.0.1. [1. 사전 Service 생성](#1-사전-service-생성)
   - [1.1. 필요한 Dependency 설치](#11-필요한-dependency-설치)
