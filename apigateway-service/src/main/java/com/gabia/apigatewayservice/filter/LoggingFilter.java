@@ -31,17 +31,16 @@ public class LoggingFilter extends AbstractGatewayFilterFactory<LoggingFilter.Co
         GatewayFilter filter = new OrderedGatewayFilter((exchange, chain) -> {
             ServerHttpRequest request = exchange.getRequest();
             ServerHttpResponse response = exchange.getResponse();
-
-            log.info("Logging Filter baseMessage: {}", config.getBaseMessage());
+            System.out.println(String.format("Logging Filter baseMessage: {}", config.getBaseMessage()));
 
             if(config.isPreLogger()){
-                log.info("Logging PRE Filter: request id -> {}", request.getId());
+                System.out.println(String.format("Logging PRE Filter: request id -> {}", request.getId()));
             }
 
             // Custom Post Filter
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
                 if(config.isPostLogger()){
-                    log.info("Logging POST Filter: response code -> {}", response.getStatusCode());
+                    System.out.println(String.format("Logging POST Filter: response code -> {}", response.getStatusCode()));
                 }
             }));
         }, Ordered.HIGHEST_PRECEDENCE);
