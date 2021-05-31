@@ -26,7 +26,6 @@ public class CustomFilter extends AbstractGatewayFilterFactory<CustomFilter.Conf
         return (exchange, chain) -> {
             ServerHttpRequest request = exchange.getRequest();
             ServerHttpResponse response = exchange.getResponse();
-
             log.info("Custom PRE filter: request id -> {}", request.getId());
 
             // Custom Post Filter
