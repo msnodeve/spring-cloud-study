@@ -26,11 +26,11 @@ public class CustomFilter extends AbstractGatewayFilterFactory<CustomFilter.Conf
         return (exchange, chain) -> {
             ServerHttpRequest request = exchange.getRequest();
             ServerHttpResponse response = exchange.getResponse();
-            System.out.println(String.format("Custom PRE filter: request id -> {}", request.getId()));
+            log.info("Custom PRE filter: request id -> {}", request.getId());
 
             // Custom Post Filter
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-                System.out.println(String.format("Custom POST filter: response code -> {}", response.getStatusCode()));
+                log.info("Custom POST filter: response code -> {}", response.getStatusCode());
             }));
         };
     }
