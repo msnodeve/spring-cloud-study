@@ -8,4 +8,4 @@ spring:
     config:
       server:
         git:
-          uri: file:///Users/seok/Desktop/seok/git/spring-cloud-study
+          uri: file:///Users/seok/Desktop/seok/git/yml-config-file
