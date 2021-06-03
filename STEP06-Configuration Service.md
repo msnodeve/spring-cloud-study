@@ -69,13 +69,13 @@ $ git add ecommerce.yml
 $ git commit -m "upload a default application yaml file"
 ```
 
+<br><br>
 
-## 1.1. 필요한 Dependency 설치
-- Lombok <br>
-- Spring Web <br>
-- Eureka Discovery Client <br>
+## 필요한 Dependency 설치
 
-![step02-02](./img/step02-02.png)
+- Config Server <br>
+
+![step06-02](img/step06-02.png)
 
 <br><br>
 
