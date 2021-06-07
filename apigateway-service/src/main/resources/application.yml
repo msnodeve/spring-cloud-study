@@ -72,6 +72,14 @@ spring:
                 baseMessage: Hi,  there.
                 preLogger: true
                 postLogger: true
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/actuator/**
+            - Method=GET,POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
       default-filters:
         - name: GlobalFilter
           args:
@@ -79,5 +87,12 @@ spring:
             preLogger: true
             postLogger: true
 
+
 token:
   secret: user_token
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httpstrace
