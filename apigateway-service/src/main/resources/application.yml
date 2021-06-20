@@ -93,8 +93,8 @@ spring:
             postLogger: true
 
 
-token:
-  secret: user_token
+#token:
+#  secret: user_token
 
 management:
   endpoints:
