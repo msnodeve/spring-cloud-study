@@ -16,9 +16,9 @@ spring:
       server:
         native:
           search-locations: file://${user.home}/Desktop/seok/git/yml-config-file
-        git:
+#        git:
 #          uri: file:///Users/seok/Desktop/seok/git/yml-config-file
-          uri: https://github.com/msnodeve/spring-cloud-config
+#          uri: https://github.com/msnodeve/spring-cloud-config
 #          username: [my username]
 #          password: [my password]
 
